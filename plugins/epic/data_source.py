@@ -43,7 +43,9 @@ async def get_epic_free(bot: Bot, type_event: str):
             try:
                 game_promotions = game["promotions"]["promotionalOffers"]
                 upcoming_promotions = game["promotions"]["upcomingPromotionalOffers"]
-                if not game_promotions and upcoming_promotions:
+                if not game_promotions and not upcoming_promotions:
+                    pass
+                elif not game_promotions and upcoming_promotions:
                     # 促销暂未上线，但即将上线
                     promotion_data = upcoming_promotions[0]["promotionalOffers"][0]
                     start_date_iso, end_date_iso = (
